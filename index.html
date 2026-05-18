@@ -1,11 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movement Fitness</title>
+<meta name="description" content="Vista sua evolução. Viva o movimento. Moda fitness com propósito.">
+
+<style>
+/* =========================================
+   ESTILOS GERAIS - MOVEMENT FITNESS
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+  font-family: Arial, Helvetica, sans-serif; 
+  background: #0a0a0c; 
+  color: #e0e0e0; 
+  line-height: 1.65; 
+}
+
+/* HEADER */
+header { 
+  background: #000; 
+  color: #fff; 
+  padding: 18px 7%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  flex-wrap: wrap; 
+  gap: 14px; 
+  position: sticky; 
+  top: 0; 
+  z-index: 10; 
+  box-shadow: 0 5px 20px rgba(0,0,0,.2);
+  border-bottom: 1px solid #222;
+}
+.logo { font-size: 1.25rem; font-weight: 900; letter-spacing: 1px; }
+.logo span { color: #f34b29; }
+nav { display: flex; flex-wrap: wrap; gap: 14px; }
+nav a { color: #fff; text-decoration: none; font-size: .95rem; font-weight: bold; transition: .3s; }
+nav a:hover { color: #f34b29; }
+
+/* SEÇÕES COMUNS */
+section { padding: 65px 7%; }
+.section-title { text-align: center; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 12px; color: #fff; }
+.section-subtitle { text-align: center; color: #aaa; max-width: 850px; margin: 0 auto 38px; font-size: 1.08rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+
+/* HERO */
+.hero { 
+  min-height: 88vh; 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  align-items: center; 
+  gap: 40px; 
+  background: linear-gradient(to bottom right, #111, #0a0a0c);
+  color: #fff;
+}
+.badge { display: inline-block; padding: 9px 15px; border-radius: 999px; font-size: .9rem; font-weight: 900; margin-bottom: 18px; }
+h1 { font-size: clamp(2.35rem, 7vw, 4.8rem); line-height: 1.05; margin-bottom: 20px; font-weight: 900; color: #fff; }
+h1 span { color: #f34b29; }
+.hero p { font-size: 1.1rem; color: #bbb; max-width: 680px; margin-bottom: 22px; }
+
+/* COMPONENTES */
+.btn { 
+  display: inline-block; 
+  background: #f34b29; 
+  color: #fff; 
+  padding: 13px 21px; 
+  border-radius: 999px; 
+  text-decoration: none; 
+  font-weight: 900; 
+  border: none; 
+  cursor: pointer; 
+  transition: .3s; 
+  box-shadow: 0 10px 24px rgba(243, 75, 41, .25); 
+}
+.btn:hover { background: #d33c1d; transform: translateY(-3px); }
+.hero-card { background: #111; padding: 32px; border-radius: 30px; box-shadow: 0 25px 60px rgba(0,0,0,.3); border: 1px solid #333; text-align: center; }
+.hero-card small { color: #bbb; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+.alert { padding: 14px 16px; border-radius: 18px; font-weight: 900; margin-top: 20px; }
+
+/* CARDS E DESTAQUES */
+.card { 
+  background: #151518; 
+  padding: 26px; 
+  border-radius: 24px; 
+  margin: 10px 0; 
+  box-shadow: 0 10px 28px rgba(0,0,0,.2); 
+  border: 1px solid #2a2a30; 
+  color: #ddd; 
+  transition: .3s; 
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+.card h3 { color: #fff; margin-bottom: 10px; font-size: 1.35rem; }
+.card p { color: #999; }
+.emoji-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; }
+.movement-destaque { font-size: 1.2rem; font-style: italic; color: #d7a84f; margin-top: 30px; text-align: center; font-weight: bold; }
+
+.notice { background: linear-gradient(135deg, #f34b29, #801e0a); color: #fff; border-radius: 30px; padding: 42px 28px; text-align: center; box-shadow: 0 20px 45px rgba(0,0,0,.15); }
+.notice strong { color: #fff; }
+.notice p { max-width: 900px; margin: 0 auto; font-size: 1.08rem; }
+
+/* FOOTER & EXTRAS */
+.footer { background: #000; color: #aaa; text-align: center; padding: 24px 7%; border-top: 1px solid #222;}
+#topBtn { position: fixed; right: 20px; bottom: 20px; width: 50px; height: 50px; border-radius: 50%; border: none; background: #f34b29; color: white; font-size: 1.4rem; cursor: pointer; display: none; box-shadow: 0 10px 25px rgba(0,0,0,.28); z-index: 100;}
+#topBtn.show { display: block; }
+.reveal { opacity: 0; transform: translateY(26px); transition: .7s; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+@media(max-width: 700px) {
+  header { justify-content: center; text-align: center; }
+  nav { justify-content: center; }
+  section { padding: 50px 6%; }
+}
+</style>
 </head>
 <body>
-    
+
+<header>
+  <div class="logo">MOVEMENT <span>FITNESS</span></div>
+  <nav>
+    <a href="#sobre">Nossa História</a>
+    <a href="#diferenciais">Propósito</a>
+    <a href="#comunidade">Comunidade</a>
+  </nav>
+</header>
+
+<section class="hero" id="sobre">
+  <div class="reveal">
+    <div class="badge" style="background: #f34b29; color: #fff;">✨ Muito além das roupas ✨</div>
+    <h1>Vista sua evolução.<br><span>Viva o movimento.</span></h1>
+    <p>A Movement Fitness nasceu do sonho de transformar o universo fitness em algo que vai além das roupas — uma marca criada para representar atitude, confiança, superação e evolução diária.</p>
+    <p>Desde o começo, nosso propósito sempre foi unir conforto, qualidade e estilo em peças que acompanham a intensidade da sua rotina, seja nos treinos, no foco pelos seus objetivos ou no seu dia a dia.</p>
+    <p><strong>Porque acreditamos que vestir-se bem também faz parte da sua motivação. 💪</strong></p>
+  </div>
+
+  <div class="hero-card reveal">
+    <small>Para quem não desiste</small>
+    <h2 style="color: #fff; margin-bottom: 15px;">Feito para sua melhor versão</h2>
+    <p style="color: #999; font-size: 0.95rem;">A Movement surgiu para pessoas que acordam todos os dias buscando sua melhor versão e entendem que resultados são construídos com dedicação, constância e movimento.</p>
+    <p class="movement-destaque">"Esse é apenas o início da nossa história, e estamos felizes em ter você fazendo parte dela."</p>
+    <div class="alert" style="background: #f34b29; color: #fff;">📍 MOVEMENT FITNESS</div>
+  </div>
+</section>
+
+<section id="diferenciais">
+  <h2 class="section-title reveal">O que nos move</h2>
+  <p class="section-subtitle reveal">Mais do que moda fitness, queremos construir uma comunidade de pessoas determinadas, fortes e inspiradoras. 🔥</p>
+
+  <div class="grid">
+    <div class="card reveal">
+      <div class="emoji-icon">🏋️‍♀️</div>
+      <h3>Conforto e Liberdade</h3>
+      <p>Nossos tecidos são pensados para oferecer elasticidade e suporte, garantindo total liberdade nos seus movimentos durante qualquer treino.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="emoji-icon">⚡</div>
+      <h3>Qualidade e Estilo</h3>
+      <p>Atenção em cada detalhe. Desenvolvemos peças que não apenas funcionam sob alta performance, mas que te deixam com muito estilo.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="emoji-icon">🖤</div>
+      <h3>Acompanha sua Evolução</h3>
+      <p>Peças feitas para durar e resistir à intensidade da sua rotina, estando ao seu lado em cada gota de suor e cada nova meta alcançada.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="emoji-icon">🚀</div>
+      <h3>Viva em Movimento</h3>
+      <p>Uma marca criada especificamente para quem não consegue ficar parado. Seja na academia, na rua ou no dia a dia, somos movimento.</p>
+    </div>
+  </div>
+</section>
+
+<section id="comunidade">
+  <div class="notice reveal">
+    <h2>Junte-se à nossa comunidade</h2>
+    <p>Nossas roupas são sua armadura para os desafios diários. Venha fazer parte de um grupo de pessoas que respiram superação e atitude.</p>
+    <br>
+    <a href="#" class="btn">Conhecer Coleção</a>
+  </div>
+</section>
+
+<div class="footer">© <span id="year-movement"></span> Movement Fitness • Vista sua evolução. Viva o movimento.</div>
+
+<button id="topBtn" title="Voltar ao topo">↑</button>
+
+<script>
+// Atualiza o ano no rodapé
+document.getElementById("year-movement").textContent = new Date().getFullYear();
+
+// Funcionalidade do botão de voltar ao topo
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+  window.scrollY > 400 ? topBtn.classList.add("show") : topBtn.classList.remove("show")
+});
+topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+// Animação de reveal ao scrollar a tela
+const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  const h = window.innerHeight;
+  reveals.forEach(el => {
+    if (el.getBoundingClientRect().top < h - 80) {
+      el.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
+
 </body>
 </html>
