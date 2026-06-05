@@ -114,17 +114,125 @@ h1 span { color: #f34b29; }
   nav { justify-content: center; }
   section { padding: 50px 6%; }
 }
+  .view {  
+  display: none;  
+}  
+.acctive {  
+  display: block;  
+}  
+  /* CATÁLOGO */
+
+.catalogo-header{
+    text-align:center;
+    padding:80px 20px 50px;
+    max-width:900px;
+    margin:auto;
+}
+
+.catalogo-header h1{
+    font-size:clamp(2.5rem,6vw,4rem);
+    margin-bottom:20px;
+    color:#fff;
+}
+
+.catalogo-header p{
+    color:#aaa;
+    font-size:1.1rem;
+    line-height:1.8;
+}
+
+.galeria{
+    width:min(1400px,92%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    padding-bottom:80px;
+}
+
+.foto-card{
+    overflow:hidden;
+    border-radius:28px;
+    background:#111;
+    border:1px solid #222;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+    transition:.4s;
+}
+
+.foto-card:hover{
+    transform:translateY(-8px);
+}
+
+.foto-card img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.foto-card:hover img{
+    transform:scale(1.04);
+}
 </style>
 </head>
 <body>
+  
+
+  <div id="catalogo" class="view">
+  <h1 style="display: flex; justify-content: center; margin-top: 50px;">Coleção Movement</h1>
+     <nav>
+    <a href="#sobre" onclick="show('home')">home</a>
+     <a href="#sobre" onclick="show('catalogo')">catalogo</a> 
+  
+     </nav>
+    <section class="catalogo-header">
+  
+    <p>
+      Criada para quem vive em movimento. Conforto, atitude e estilo para acompanhar sua evolução todos os dias.
+    </p>
+  </section>
+
+  <section class="galeria">
+
+    <div class="foto-card">
+      <img src="IMG-20260507-WA0157.jpg" alt="Movement Fitness">
+    </div>
+    <p style="color:gray;">Acreditamos que o movimento transforma vidas. Por isso desenvolvemos roupas que
+      acompanham sua rotina dentro e fora dos treinos, oferecendo conforto, estilo e
+      liberdade para você focar no que realmente importa: sua evolução.</p>
+    <div class="foto-card">
+      <img src="IMG-20260507-WA0161.jpg" alt="Movement Fitness">
+    </div>
+
+    <div class="foto-card">
+      <img src="IMG-20260507-WA0162.jpg" alt="Movement Fitness">
+    </div>
+
+  </section>
+
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+     
+  <div id="home" class="view acctive">
 
 <header>
   <div class="logo">MOVEMENT <span>FITNESS</span></div>
-  <nav>
-    <a href="#sobre">Nossa História</a>
-    <a href="#diferenciais">Propósito</a>
-    <a href="#comunidade">Comunidade</a>
-  </nav>
+    <nav>
+    <a href="#sobre" onclick="show('home')">home</a>
+     <a href="#sobre" onclick="show('catalogo')">catalogo</a> 
+  
+     </nav>
 </header>
 
 <section class="hero" id="sobre">
@@ -188,6 +296,7 @@ h1 span { color: #f34b29; }
 <div class="footer">© <span id="year-movement"></span> Movement Fitness • Vista sua evolução. Viva o movimento.</div>
 
 <button id="topBtn" title="Voltar ao topo">↑</button>
+</div>
 
 <script>
 // Atualiza o ano no rodapé
@@ -212,6 +321,13 @@ function revealOnScroll() {
 }
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+  function show(page){
+  document.querySelectorAll('.view').forEach(el => {
+    el.classList.remove('acctive');
+  });
+
+  document.getElementById(page).classList.add('acctive');
+}
 </script>
 
 </body>
