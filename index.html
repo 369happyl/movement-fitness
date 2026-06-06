@@ -8,223 +8,870 @@
 
 <style>
 /* =========================================
-   ESTILOS GERAIS - MOVEMENT FITNESS
+   MOVEMENT FITNESS - STYLE LIMPO
    ========================================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { 
-  font-family: Arial, Helvetica, sans-serif; 
-  background: #0a0a0c; 
-  color: #e0e0e0; 
-  line-height: 1.65; 
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* HEADER */
-header { 
-  background: #000; 
-  color: #fff; 
-  padding: 18px 7%; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  flex-wrap: wrap; 
-  gap: 14px; 
-  position: sticky; 
-  top: 0; 
-  z-index: 10; 
-  box-shadow: 0 5px 20px rgba(0,0,0,.2);
-  border-bottom: 1px solid #222;
+html {
+  scroll-behavior: smooth;
 }
-.logo { font-size: 1.25rem; font-weight: 900; letter-spacing: 1px; }
-.logo span { color: #f34b29; }
-nav { display: flex; flex-wrap: wrap; gap: 14px; }
-nav a { color: #fff; text-decoration: none; font-size: .95rem; font-weight: bold; transition: .3s; }
-nav a:hover { color: #f34b29; }
 
-/* SEÇÕES COMUNS */
-section { padding: 65px 7%; }
-.section-title { text-align: center; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 12px; color: #fff; }
-.section-subtitle { text-align: center; color: #aaa; max-width: 850px; margin: 0 auto 38px; font-size: 1.08rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #050505;
+  color: #ffffff;
+  line-height: 1.65;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+/* TROCA DE TELAS */
+.view {
+  display: none;
+}
+
+.acctive {
+  display: block;
+}
+
+/* CONTAINER */
+.container {
+  width: min(1120px, 88%);
+  margin: 0 auto;
+}
+
+/* HEADER GERAL */
+header,
+.header {
+  background: #030303;
+  border-bottom: 1px solid #151515;
+  padding: 28px 7%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* LOGO */
+.logo {
+  font-size: clamp(1.4rem, 5vw, 2.1rem);
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.logo span,
+.footer span {
+  color: #ff3b2f;
+}
+
+/* NAV */
+nav,
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+nav a,
+.nav a {
+  color: #e7e7e7;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 800;
+  position: relative;
+  transition: 0.25s;
+}
+
+nav a::after,
+.nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #ff3b2f;
+  left: 0;
+  bottom: -8px;
+  transition: 0.25s;
+}
+
+nav a:hover,
+.nav a:hover {
+  color: #ffffff;
+}
+
+nav a:hover::after,
+.nav a:hover::after {
+  width: 100%;
+}
 
 /* HERO */
-.hero { 
-  min-height: 88vh; 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  align-items: center; 
-  gap: 40px; 
-  background: linear-gradient(to bottom right, #111, #0a0a0c);
-  color: #fff;
-}
-.badge { display: inline-block; padding: 9px 15px; border-radius: 999px; font-size: .9rem; font-weight: 900; margin-bottom: 18px; }
-h1 { font-size: clamp(2.35rem, 7vw, 4.8rem); line-height: 1.05; margin-bottom: 20px; font-weight: 900; color: #fff; }
-h1 span { color: #f34b29; }
-.hero p { font-size: 1.1rem; color: #bbb; max-width: 680px; margin-bottom: 22px; }
-
-/* COMPONENTES */
-.btn { 
-  display: inline-block; 
-  background: #f34b29; 
-  color: #fff; 
-  padding: 13px 21px; 
-  border-radius: 999px; 
-  text-decoration: none; 
-  font-weight: 900; 
-  border: none; 
-  cursor: pointer; 
-  transition: .3s; 
-  box-shadow: 0 10px 24px rgba(243, 75, 41, .25); 
-}
-.btn:hover { background: #d33c1d; transform: translateY(-3px); }
-.hero-card { background: #111; padding: 32px; border-radius: 30px; box-shadow: 0 25px 60px rgba(0,0,0,.3); border: 1px solid #333; text-align: center; }
-.hero-card small { color: #bbb; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-.alert { padding: 14px 16px; border-radius: 18px; font-weight: 900; margin-top: 20px; }
-
-/* CARDS E DESTAQUES */
-.card { 
-  background: #151518; 
-  padding: 26px; 
-  border-radius: 24px; 
-  margin: 10px 0; 
-  box-shadow: 0 10px 28px rgba(0,0,0,.2); 
-  border: 1px solid #2a2a30; 
-  color: #ddd; 
-  transition: .3s; 
-}
-.card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,.4); }
-.card h3 { color: #fff; margin-bottom: 10px; font-size: 1.35rem; }
-.card p { color: #999; }
-.emoji-icon { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; }
-.movement-destaque { font-size: 1.2rem; font-style: italic; color: #d7a84f; margin-top: 30px; text-align: center; font-weight: bold; }
-
-.notice { background: linear-gradient(135deg, #f34b29, #801e0a); color: #fff; border-radius: 30px; padding: 42px 28px; text-align: center; box-shadow: 0 20px 45px rgba(0,0,0,.15); }
-.notice strong { color: #fff; }
-.notice p { max-width: 900px; margin: 0 auto; font-size: 1.08rem; }
-
-/* FOOTER & EXTRAS */
-.footer { background: #000; color: #aaa; text-align: center; padding: 24px 7%; border-top: 1px solid #222;}
-#topBtn { position: fixed; right: 20px; bottom: 20px; width: 50px; height: 50px; border-radius: 50%; border: none; background: #f34b29; color: white; font-size: 1.4rem; cursor: pointer; display: none; box-shadow: 0 10px 25px rgba(0,0,0,.28); z-index: 100;}
-#topBtn.show { display: block; }
-.reveal { opacity: 0; transform: translateY(26px); transition: .7s; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-@media(max-width: 700px) {
-  header { justify-content: center; text-align: center; }
-  nav { justify-content: center; }
-  section { padding: 50px 6%; }
-}
-  .view {  
-  display: none;  
-}  
-.acctive {  
-  display: block;  
-}  
-  /* CATÁLOGO */
-
-.catalogo-header{
-    text-align:center;
-    padding:80px 20px 50px;
-    max-width:900px;
-    margin:auto;
+.hero {
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at top right, rgba(255, 59, 47, 0.18), transparent 34%),
+    linear-gradient(180deg, #080808, #050505);
+  border-bottom: 1px solid #121212;
+  padding: 90px 7%;
+  gap: 42px;
 }
 
-.catalogo-header h1{
-    font-size:clamp(2.5rem,6vw,4rem);
-    margin-bottom:20px;
-    color:#fff;
+/* Quando o hero tiver duas colunas no HTML antigo */
+.hero {
+  flex-wrap: wrap;
 }
 
-.catalogo-header p{
-    color:#aaa;
-    font-size:1.1rem;
-    line-height:1.8;
+.hero > div {
+  flex: 1 1 320px;
 }
 
-.galeria{
-    width:min(1400px,92%);
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-    padding-bottom:80px;
+.hero-content {
+  padding: 30px 0;
 }
 
-.foto-card{
-    overflow:hidden;
-    border-radius:28px;
-    background:#111;
-    border:1px solid #222;
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
-    transition:.4s;
+.badge,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 22px;
+  background: #ff3b2f;
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 900;
+  margin-bottom: 32px;
+  box-shadow: 0 15px 35px rgba(255, 59, 47, 0.22);
 }
 
-.foto-card:hover{
-    transform:translateY(-8px);
+/* TÍTULOS DO HERO */
+h1,
+.hero h2 {
+  max-width: 860px;
+  font-size: clamp(3rem, 11vw, 6.2rem);
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -3px;
+  color: #ffffff;
+  margin-bottom: 28px;
 }
 
-.foto-card img{
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit:cover;
-    transition:.5s;
+h1 span,
+.hero h2 span {
+  display: block;
+  color: #ff3b2f;
 }
 
-.foto-card:hover img{
-    transform:scale(1.04);
+.hero p,
+.hero-text {
+  max-width: 720px;
+  color: #b8b8b8;
+  font-size: clamp(1.05rem, 4vw, 1.45rem);
+  line-height: 1.8;
+  margin-bottom: 20px;
 }
-  .stylep {
-    font-size:20px;
-    display:flex;
-    justify-content:center;
-    margin: 30px;
-    color:white;
-    font-weight:800px;
+
+.hero strong {
+  color: #ffffff;
+}
+
+/* BOTÕES */
+.btn {
+  display: inline-block;
+  background: #ff3b2f;
+  color: #ffffff;
+  padding: 15px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 18px 42px rgba(255, 59, 47, 0.25);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  background: #e03523;
+  box-shadow: 0 24px 55px rgba(255, 59, 47, 0.35);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.btn-primary {
+  background: #ff3b2f;
+}
+
+.btn-secondary {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #242424;
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  border-color: #ff3b2f;
+}
+
+/* HERO CARD */
+.hero-card {
+  background: linear-gradient(180deg, #101010, #080808);
+  padding: 34px;
+  border-radius: 28px;
+  border: 1px solid #242424;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.hero-card small {
+  color: #ff3b2f;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-card h2 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1;
+  margin: 18px 0;
+}
+
+.hero-card p {
+  color: #a9a9a9;
+  font-size: 1rem;
+}
+
+.movement-destaque {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #d7a84f;
+  margin-top: 24px;
+  font-weight: bold;
+}
+
+.alert {
+  padding: 14px 16px;
+  border-radius: 18px;
+  font-weight: 900;
+  margin-top: 20px;
+  background: #ff3b2f;
+  color: #ffffff;
+}
+
+/* SEÇÕES */
+section {
+  padding: 90px 7%;
+  border-bottom: 1px solid #121212;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.sobre {
+  background: #080808;
+}
+
+.beneficios {
+  background: #050505;
+}
+
+.catalogo {
+  background:
+    radial-gradient(circle at bottom left, rgba(255, 59, 47, 0.13), transparent 30%),
+    #080808;
+}
+
+/* TÍTULOS DE SEÇÃO */
+.section-title {
+  max-width: 760px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.section-title,
+.section-title h2,
+.text-box h2,
+.cta h2 {
+  color: #ffffff;
+  font-size: clamp(2.1rem, 7vw, 4.3rem);
+  line-height: 1;
+  letter-spacing: -2px;
+  font-weight: 900;
+}
+
+.section-subtitle,
+.section-title p,
+.text-box p,
+.cta p {
+  color: #b8b8b8;
+  font-size: 1.1rem;
+  line-height: 1.85;
+}
+
+.mini-title {
+  color: #ff3b2f !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem !important;
+  margin-bottom: 18px;
+}
+
+/* GRIDS */
+.grid,
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
+}
+
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 54px;
+  align-items: center;
+}
+
+/* CARDS */
+.card {
+  background: linear-gradient(180deg, #101010, #0a0a0a);
+  border: 1px solid #232323;
+  border-radius: 24px;
+  padding: 30px;
+  transition: 0.25s;
+  color: #dddddd;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 59, 47, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card h3 {
+  color: #ffffff;
+  font-size: 1.45rem;
+  margin-bottom: 14px;
+}
+
+.card p {
+  color: #a9a9a9;
+  line-height: 1.8;
+}
+
+.emoji-icon {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+/* IMAGENS */
+.image-box {
+  background: #101010;
+  border: 1px solid #222222;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 360px;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.45);
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+}
+
+/* CATÁLOGO */
+.catalogo-header {
+  text-align: center;
+  padding: 80px 20px 50px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.catalogo-header h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.catalogo-header p {
+  color: #aaaaaa;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.galeria,
+.produto-grid {
+  width: min(1400px, 92%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  padding-bottom: 30px;
+}
+
+.foto-card,
+.produto {
+  overflow: hidden;
+  border-radius: 26px;
+  background: #101010;
+  border: 1px solid #242424;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  transition: 0.25s;
+}
+
+.foto-card:hover,
+.produto:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 59, 47, 0.65);
+}
+
+.foto-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.foto-card:hover img {
+  transform: scale(1.04);
+}
+
+.produto-img {
+  height: 280px;
+  background: #151515;
+}
+
+.produto-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.produto-info {
+  padding: 24px;
+}
+
+.produto-info h3 {
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.produto-info p {
+  color: #a9a9a9;
+  margin-bottom: 18px;
+}
+
+.produto-info a {
+  color: #ff3b2f;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+/* NOTICE / CTA */
+.notice,
+.cta {
+  background:
+    linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)),
+    radial-gradient(circle at center, rgba(255, 59, 47, 0.22), transparent 40%);
+  text-align: center;
+  border-radius: 30px;
+}
+
+.notice {
+  padding: 42px 28px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+.notice h2 {
+  color: #ffffff;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  margin-bottom: 18px;
+}
+
+.notice p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  color: #b8b8b8;
+}
+
+.cta {
+  padding: 110px 7%;
+  border-radius: 0;
+}
+
+.cta-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.cta p {
+  margin-bottom: 34px;
+}
+
+/* FOOTER */
+.footer {
+  padding: 45px 7%;
+  text-align: center;
+  background: #030303;
+  color: #777777;
+  border-top: 1px solid #151515;
+}
+
+.footer h2 {
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.footer p {
+  color: #777777;
+  font-size: 0.9rem;
+}
+
+/* BOTÃO TOPO */
+#topBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #ff3b2f;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+  z-index: 100;
+}
+
+#topBtn.show {
+  display: block;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: 0.7s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVO */
+@media (max-width: 850px) {
+  header,
+  .header {
+    text-align: center;
   }
+
+  .header-content {
+    gap: 22px;
+  }
+
+  .sobre-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 75px 6%;
+  }
+
+  section {
+    padding: 75px 6%;
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+
+  h1,
+  .hero h2 {
+    letter-spacing: -2px;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    width: min(88%, 430px);
+  }
+
+  header,
+  .header {
+    padding: 26px 6%;
+  }
+
+  .logo {
+    letter-spacing: 3px;
+  }
+
+  nav,
+  .nav {
+    gap: 24px;
+  }
+
+  nav a,
+  .nav a {
+    font-size: 0.95rem;
+  }
+
+  .badge,
+  .tag {
+    font-size: 0.9rem;
+    padding: 10px 17px;
+  }
+
+  .hero p,
+  .hero-text {
+    font-size: 1.05rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .image-box,
+  .image-box img {
+    min-height: 260px;
+  }
+
+  .produto-img {
+    height: 250px;
+  }
+}
 </style>
 </head>
 <body>
   
 
   <div id="catalogo" class="view">
-  <h1 style="display: flex; justify-content: center; margin-top: 50px;">Coleção Movement</h1>
-     <nav>
-    <a href="#sobre" onclick="show('home')">home</a>
-     <a href="#sobre" onclick="show('catalogo')">catalogo</a> 
-  
-     </nav>
-    <section class="catalogo-header">
-  
-    <p>
-      Criada para quem vive em movimento. Conforto, atitude e estilo para acompanhar sua evolução todos os dias.
-    </p>
-  </section>
+    <header class="header">
+    <div class="container header-content">
+      <h1 class="logo">
+        MOVEMENT <span>FITNESS</span>
+      </h1>
 
-  <section class="galeria">
-
-    <div class="foto-card">
-      <img src="IMG-20260507-WA0157.jpg" alt="Movement Fitness">
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contato">Contato</a>
+      </nav>
     </div>
-    <p style="color:gray;">Acreditamos que o movimento transforma vidas. Por isso desenvolvemos roupas que
-      acompanham sua rotina dentro e fora dos treinos, oferecendo conforto, estilo e
-      liberdade para você focar no que realmente importa: sua evolução.</p>
-    <div class="foto-card">
-      <img src="IMG-20260507-WA0161.jpg" alt="Movement Fitness">
-    </div>
-    <p style="color:gray">Cada peça da Movement Fitness foi criada para representar mais do que aparência.
-      Representa disciplina, esforço, evolução e a busca constante pela sua melhor versão.</p>
-    <div class="foto-card">
-      <img src="IMG-20260507-WA0162.jpg" alt="Movement Fitness">
-    </div>
+  </header>
 
-  </section>
-    <h1 style="color: gray;display: flex; justify-content: center;">mais</h1>
-    <p class="stylep">modelo: temos P, M, G, e GG, roupas femininas</p>
-    <a style="margin: 40px;"href="https://wa.me/5514991030425" target="_blank">Fale Conosco no WhatsApp</a>
+  <main>
 
-</div>
-  
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+
+        <p class="tag">✨ Muito além das roupas ✨</p>
+
+        <h2>
+          Vista sua evolução.  
+          <span>Viva o movimento.</span>
+        </h2>
+
+        <p class="hero-text">
+          A Movement Fitness nasceu para representar atitude, confiança,
+          superação e evolução diária — dentro e fora dos treinos.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+          <a href="#sobre" class="btn btn-secondary">Conhecer marca</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="section sobre" id="sobre">
+      <div class="container sobre-grid">
+
+        <div class="image-box">
+          <img src="IMG-20260507-WA0157.png" alt="Movement Fitness">
+        </div>
+
+        <div class="text-box">
+          <p class="mini-title">Nossa essência</p>
+
+          <h2>Criada para quem vive em movimento.</h2>
+
+          <p>
+            Conforto, atitude e estilo para acompanhar sua evolução todos os dias.
+            Acreditamos que o movimento transforma vidas, e por isso criamos peças
+            que acompanham sua rotina com liberdade, presença e identidade.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="section beneficios">
+      <div class="container">
+
+        <div class="section-title">
+          <p class="mini-title">Por que escolher</p>
+          <h2>Peças feitas para acompanhar seu ritmo.</h2>
+        </div>
+
+        <div class="cards">
+
+          <div class="card">
+            <h3>Conforto</h3>
+            <p>
+              Roupas pensadas para sua rotina, seus treinos e seu dia a dia.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Estilo</h3>
+            <p>
+              Visual forte, moderno e direto para quem gosta de vestir atitude.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Movimento</h3>
+            <p>
+              Liberdade para treinar, caminhar, viver e evoluir sem travar.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="section catalogo" id="catalogo">
+      <div class="container">
+
+        <div class="section-title">
+          <p class="mini-title">Catálogo</p>
+          <h2>Modelos disponíveis</h2>
+          <p>
+            Temos tamanhos P, M, G e GG. Peças femininas com conforto,
+            estilo e presença.
+          </p>
+        </div>
+
+        <div class="produto-grid">
+
+          <article class="produto">
+            <div class="produto-img">
+              <img src="IMG-20260507-WA0161.png" alt="Produto Movement Fitness">
+            </div>
+
+            <div class="produto-info">
+              <h3>Conjunto Fitness</h3>
+              <p>P, M, G e GG</p>
+              <a href="#contato">Consultar</a>
+            </div>
+          </article>
+
+          <article class="produto">
+            <div class="produto-img">
+              <img src="IMG-20260507-WA0162.png" alt="Produto Movement Fitness">
+            </div>
+
+            <div class="produto-info">
+              <h3>Look Treino</h3>
+              <p>Conforto e estilo</p>
+              <a href="#contato">Consultar</a>
+            </div>
+          </article>
+
+          <article class="produto">
+            <div class="produto-img">
+              <img src="IMG20260507-WA0133.jpg" alt="Produto Movement Fitness">
+            </div>
+
+            <div class="produto-info">
+              <h3>Peça Casual</h3>
+              <p>Para treino e rotina</p>
+              <a href="#contato">Consultar</a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta" id="contato">
+      <div class="container cta-content">
+        <p class="mini-title">Entre em contato</p>
+
+        <h2>Vista o movimento hoje.</h2>
+
+        <p>
+          Quer saber modelos, tamanhos e disponibilidade?
+          Fale conosco pelo WhatsApp.
+        </p>
+
+        <a class="btn btn-primary" href="https://wa.me/5514991030425" target="_blank">
+          Fale Conosco no WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <h2>MOVEMENT <span>FITNESS</span></h2>
+      <p>© 2026 Movement Fitness. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  </div>
   
   
   
